@@ -1,5 +1,23 @@
 apply plugin: 'com.android.application'
 
+ext {
+    bintrayRepo = 'dashboard' // your repo name
+    bintrayName = 'test_library' // has to be same as your library module name
+    publishedGroupId = 'com.example.mylibraryyy' // your module package name
+    libraryName = "mylibrary"
+    artifact = 'test_library' // has to be same as your library module name
+    libraryDescription = 'demo'
+    siteUrl = 'https://github.com/Prachikashyap/webView'
+    gitUrl = 'https://github.com/Prachikashyap/webView'
+    libraryVersion = '1.0'
+    developerId = "prachi"
+    developerName = "prachikashyap022"
+    developerEmail = 'prachikashyap022@gmail.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -14,15 +32,29 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+        }
+        buildscript {
+            repositories {
+                mavenCentral()
+            }
+        }
+
+
+            dependencies {
+                implementation fileTree(dir: 'libs', include: ['*.jar'])
+                implementation 'com.android.support:appcompat-v7:26.1.0'
+                implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+                testImplementation 'junit:junit:4.12'
+                androidTestImplementation 'com.android.support.test:runner:1.0.1'
+                androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+            }
+
+
+        }
+    apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'
+    apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/bintrayv.gradle'
+
+
 }
